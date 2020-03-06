@@ -14,10 +14,32 @@ typedef struct tree {
     struct treeNode* root; //Root
 } tree;
 
-//Create a new node
+//Create new node
 treeNode* newNode(int data);
 
-//Create the tree
-tree* createTree();
+//Create tree
+treeNode* createTree();
 
+//Find depth of tree
+int treeDepth(treeNode* node);
+
+//Search tree for node
 treeNode* treeSearch(treeNode* x, int k);
+
+//Insert node to tree
+void treeInsert(tree* T, treeNode* z);
+
+//Delete node from tree
+treeNode* treeDelete(tree* T, treeNode* z);
+
+//Find min. node
+treeNode* treeMinimum(treeNode* x);
+
+//Find max. node
+treeNode* treeMaximum(treeNode* x);
+
+//Find node successor
+treeNode* treeSuccessor(treeNode* x);
+
+//Find node predecessor
+treeNode* treePredecessor(treeNode* x);
