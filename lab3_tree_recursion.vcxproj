@@ -140,6 +140,7 @@
   <ItemGroup>
     <ClCompile Include="bin_tree_func.c" />
     <ClCompile Include="main.c" />
+    <ClCompile Include="operations_func.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bin_tree.h" />
