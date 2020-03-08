@@ -24,9 +24,18 @@
     <ClCompile Include="operations_func.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="load_files\load_file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="load_files\test_load_file.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bin_tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="load_files\load_file.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -139,11 +139,14 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="bin_tree_func.c" />
+    <ClCompile Include="load_files\load_file.c" />
+    <ClCompile Include="load_files\test_load_file.c" />
     <ClCompile Include="main.c" />
     <ClCompile Include="operations_func.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bin_tree.h" />
+    <ClInclude Include="load_files\load_file.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,0 +1,14 @@
+###Exercise #1
+
+main.c - contains the calls for all functions to test my implementations and calls creation of the initial tree
+bin_tree.h - header file for operations and data structures
+bin_tree_func.c - C file with functions using the algorithms
+operations_func.c - C file with functions for all operations
+
+I manually create a tree with createTree. set of {7, 11, 13, 17, 21, 28, 37, 42, 50, 99}
+I run my treeTests that include a printer for treeInorder and treeDepth. Whenever I make changes to the tree.
+I run operations on values that are both in the tree and not.
+
+Run program == run tests.
+Change static numbers in main.c Values in the defined set should work and other values should give expected output in console.
+

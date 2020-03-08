@@ -1,42 +1,56 @@
-#include <stddef.h>
 #include "bin_tree.h"
+#include <stddef.h>
+#include <stdio.h>
 
 //Search - return pointer to element in S s.t. x.key = k (tail recursion)
-treeNode* treeSearch(treeNode* x, int k) {
+treeNode* search(treeNode* x, int k) {
 	if (x == NULL || k == x->key) {
-		return x;
+		if (x != NULL) {
+			printf("Found the node->key %d\n", x->key);
+			return x;
+		}
+		else {
+			printf("Didn't find the key %d\n", k);
+			return x;
+		}
 	}
 	if (k < x->key) {
-		return treeSearch(x->left, k);
+		return search(x->left, k);
 	}
 	else {
-		return treeSearch(x->right, k);
+		return search(x->right, k);
 	}
 }
 
 //Insert - Insert node (createNode) into Tree
-void treeInsert(tree* T, treeNode* z) {
+void treeInsert(tree* T, int z) {
 	treeNode* y = NULL;
 	treeNode* x = T->root;
 
+	treeNode* node = newNode(z);
+
 	while (x != NULL) {
 		y = x;
-		if (z->key < x->key) {
+		if (node->key < x->key) {
 			x = x->left;
 		}
 		else {
 			x = x->right;
 		}
 	}
-	z->parent = y;
+	node->parent = y;
 	if (y == NULL) {
-		T->root = z;	//tree T was empty
+		T->root = node;	//tree T was empty
 	}
-	else if (z->key < y->key) {
-		y->left = z;
+	else if (node->key < y->key) {
+		y->left = node;
+		y->left->parent = y;	//Update parent to node
+		printf("Insert node->key %d\n", node->key);
 	}
-	else{
-		y->right = z;
+	else {
+		y->right = node;
+		y->right->parent = y;	//Update parent to node
+		printf("Insert node->key %d\n", node->key);
 	}
 }
 
@@ -45,40 +59,48 @@ treeNode* treeDelete(tree* T, treeNode* z) {
 	treeNode* y = NULL;
 	treeNode* x = NULL;
 
-	if (z->left == NULL || z->right == NULL) {
-		y = z;
-	}
-	else {
-		y = treeSuccessor(z);
-	}
-	if (y->left != NULL) {
-		x = y->left;
-	}
-	else {
-		x = y->right;
-	}
-	if (x != NULL) {
-		x->parent = y->parent;
-	}
-	if (y->parent == NULL) {
-		T->root = x;
-	}
-	else {
-		if (y == y->parent->left) {
-			y->parent->left = x;
+	if (z != NULL) {
+		if (z->left == NULL || z->right == NULL) {
+			y = z;
 		}
 		else {
-			y->parent->right = x;
+			y = treeSuccessor(z);
 		}
+		if (y->left != NULL) {
+			x = y->left;
+		}
+		else {
+			x = y->right;
+		}
+		if (x != NULL) {
+			x->parent = y->parent;
+		}
+		if (y->parent == NULL) {
+			T->root = x;
+		}
+		else {
+			if (y == y->parent->left) {
+				y->parent->left = x;
+			}
+			else {
+				y->parent->right = x;
+			}
+		}
+		if (y != z) {
+			z->key = y->key;
+		}
+		printf("Deleted node->key %d\n", y->key);
+		return y;
 	}
-	if (y != z) {
-		z->key = y->key;
+	else {
+		printf("Node was NULL, cannot delete that.");
+		return NULL;
 	}
-	return y;
+
 }
 
 //Minimum - Return smalest node
-treeNode* treeMinimum(treeNode* x) {
+treeNode* minimum(treeNode* x) {
 	while (x->left != NULL) {
 		x = x->left;
 	}
@@ -86,7 +108,7 @@ treeNode* treeMinimum(treeNode* x) {
 }
 
 //Maximum - Return largest node 
-treeNode* treeMaximum(treeNode* x) {
+treeNode* maximum(treeNode* x) {
 	while (x->right != NULL) {
 		x = x->right;
 	}
@@ -98,7 +120,7 @@ treeNode* treeSuccessor(treeNode* x) {
 	treeNode* y = NULL;
 
 	if (x->right != NULL) {
-		return treeMinimum(x->right);
+		return minimum(x->right);
 	}
 	y = x->parent;
 	while (y != NULL && x == y->right) {
@@ -113,7 +135,7 @@ treeNode* treePredecessor(treeNode* x) {
 	treeNode* y = NULL;
 
 	if (x->right != NULL) {
-		return treeMaximum(x->left);
+		return maximum(x->left);
 	}
 	y = x->parent;
 	while (y != NULL && x == y->left) {
@@ -121,4 +143,34 @@ treeNode* treePredecessor(treeNode* x) {
 		y = x->parent;
 	}
 	return y;
+}
+
+//depth of the tree
+int maxDepth(treeNode* root) {
+	if (root == NULL) {
+		//Root null, bottom of tree
+		return 0;
+	}
+	else {
+		//recursivly find depth of left and right tree
+		int leftDepth = maxDepth(root->left);
+		int rightDepth = maxDepth(root->right);
+
+		//go to the larger one
+		if (leftDepth > rightDepth) {
+			return leftDepth + 1;
+		}
+		else {
+			return rightDepth + 1;
+		}
+	}
+}
+
+//Inorder-tree-walk
+void inorder(treeNode* root) {
+	if (root != NULL) {
+		inorder(root->left);
+		printf("%d ", root->key);
+		inorder(root->right);
+	}
 }
