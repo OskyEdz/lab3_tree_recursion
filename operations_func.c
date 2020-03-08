@@ -1,4 +1,5 @@
 #include "bin_tree.h"
+
 #include <stddef.h>
 #include <stdio.h>
 

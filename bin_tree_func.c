@@ -1,5 +1,6 @@
 #include "bin_tree.h"
 #include "load_files/load_file.h"
+
 #include <stddef.h>
 #include <stdbool.h> 
 #include <stdio.h>
@@ -157,6 +158,7 @@ void treeTests(treeNode* root) {
     printf("Tests completed!\n\n");
 }
 
+//Test 1 - create tree from file
 tree* test_1() {
     char* sortingProblem[] = { "sorting_problems/test-10-1-problem" };
     char* sortingSolution[] = { "sorting_problems/test-10-1-solution" };
@@ -167,6 +169,7 @@ tree* test_1() {
     return loadTree;
 }
 
+//Test 2 - create tree from file WARNING 100 000 numbers spam in console!!
 tree* test_2() {
     char* sortingProblem[] = { "sorting_problems/test-100000-1-problem" };
     char* sortingSolution[] = { "sorting_problems/test-100000-1-solution" };

@@ -1,0 +1,9 @@
+Exercise 2
+
+main.c run calls to bin_tree_func.c via header bin_tree.h
+I created the tree with createLoadTree and loading files provided (with some minor alterations)(load_file.c and load_file.h)
+
+I ran a few different versions of problems from the sorting_problems.tar.gz
+
+Go to test_1 or test_2 in bin_tree_func.c (line 162 and down)
+Replace sorting problem and solution with any other file mad with the python script. (no changes this time)

@@ -11,7 +11,7 @@ int* load_file(const char* fName)
 	int num_elements = 0;
 	FILE* filepoint;
 
-	errno_t err = fopen_s(&filepoint, fName, "r");
+	errno_t err = fopen_s(&filepoint, fName, "r");	//Modification for secure opening of file, reason for Warning C6262?
 
 	if (filepoint == NULL) {
 		printf("Error: file does not exist. Exiting...\n");
